@@ -10,10 +10,10 @@ function create_db_table($pdo)
     $sql = "
     CREATE TABLE scores
     (
-        `id`          MEDIUMINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        `user_id`     MEDIUMINT UNSIGNED NOT NULL,
-        `score`       TINYINT UNSIGNED NOT NULL,
-        `date`        DATE NOT NULL
+        'id'          MEDIUMINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        'user_id'     MEDIUMINT UNSIGNED NOT NULL,
+        'score'       TINYINT UNSIGNED NOT NULL,
+        'date'        DATE NOT NULL
     )
     ";
     $pdo->exec($sql);
@@ -26,7 +26,7 @@ function populate_db_from_csv($pdo, $file)
 
 
     $sql = "
-    INSERT INTO scores (`user_id`, `score`, `date`)
+    INSERT INTO scores ('user_id', 'score', 'date')
     VALUES (:user_id, :score, :date)
     ";
 
