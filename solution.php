@@ -31,7 +31,23 @@ function dates_with_at_least_n_scores($pdo, $n)
 
 function users_with_top_score_on_date($pdo, $date)
 {
-    // YOUR CODE GOES HERE
+    $date = $date;
+    $sql = "
+        SELECT s1.user_id
+        FROM (
+          SELECT max(score) as max, user_id, date
+          FROM scores
+        ) AS s2
+        INNER JOIN scores as s1
+        ON s1.date = :date
+        AND s1.score = s2.max
+    ";
+
+    if ($date !== [null]) {
+        $dates = $pdo->prepare($sql)->execute($date);
+    }
+
+    return $date;
 }
 
 function dates_when_user_was_in_top_n($pdo, $user_id, $n)
