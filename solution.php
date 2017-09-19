@@ -1,9 +1,15 @@
 <?php
-// YOUR NAME AND EMAIL GO HERE
+// Maurice Stephens: maurice.stephens@gmail.com
 
 function parse_request($request, $secret)
 {
-    // YOUR CODE GOES HERE
+    // reverse the strtr()
+    $request = strtr($request, '-_', '+/');
+    // get payload from concatenated request
+    $payloadArray  = explode('.', $request);
+    $payload = base64_decode($payloadArray[1]);
+
+    return $payload;
 }
 
 function dates_with_at_least_n_scores($pdo, $n)
